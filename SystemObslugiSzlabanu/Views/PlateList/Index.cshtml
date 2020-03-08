@@ -1,0 +1,95 @@
+﻿@model IEnumerable<SystemObslugiSzlabanu.Models.Plate>
+
+@{
+    ViewData["Title"] = "List of Registered Plates";
+}
+
+<h1>List of Registered Plates:</h1>
+
+<p>
+    <a class="btn btn-success btn-sm text-white" asp-action="Create">Create New</a>
+</p>
+
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Owner)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CarDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OwnerDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PhoneNumber)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Owner)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CarDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.OwnerDescription)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                    </td>
+                    <td>
+                        <a class="btn btn-info btn-sm text-white" asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a class="btn btn-success btn-sm text-white" asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                        <a class="btn btn-danger btn-sm text-white" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p> No Plate's Registered ;(. Please Create one, to display table.</p>
+
+}
+
+<div class="col-12" style="text-align:center">
+    <br />
+    <span class="h3 text-info">OR</span>
+    <br /><br />
+</div>
+<div class="col-12 border p-5">
+
+    <table id="DT_load" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Owner</th>
+                <th>CarDescription</th>
+                <th>OwnerDescription</th>
+                <th>PhoneNumber</th>
+                <th></th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+
+@section Scripts{
+    <script src="~/js/plateList.js"></script>
+}
